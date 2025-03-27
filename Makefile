@@ -44,6 +44,7 @@ invoke-lambda:
 	echo '{"Records":[{"body":"{\"task\":\"buy milk\"}"}]}' > event.json
 	aws --endpoint-url=$(AWS_ENDPOINT) lambda invoke \
 	  --function-name $(LAMBDA_NAME) \
+	  --cli-binary-format raw-in-base64-out \
 	  --payload file://event.json \
 	  output.json && cat output.json
 
@@ -59,3 +60,6 @@ clean:
 reset:
 	rm -rf .localstack
 	docker-compose down -v
+
+localstack-logs:
+	docker logs -f localstack

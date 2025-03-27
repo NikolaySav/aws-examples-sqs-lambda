@@ -12,7 +12,7 @@ type Todo struct {
 	Task string `json:"task"`
 }
 
-func handler(ctx context.Context, sqsEvent events.SQSEvent) error {
+func handler(_ context.Context, sqsEvent events.SQSEvent) (string, error) {
 	for _, message := range sqsEvent.Records {
 		var todo Todo
 		if err := json.Unmarshal([]byte(message.Body), &todo); err != nil {
@@ -21,7 +21,7 @@ func handler(ctx context.Context, sqsEvent events.SQSEvent) error {
 		}
 		fmt.Printf("📥 New Todo: %s\n", todo.Task)
 	}
-	return nil
+	return "Processed SQS message(s)", nil
 }
 
 func main() {
