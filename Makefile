@@ -8,7 +8,7 @@ ZIP_FILE=lambda/function.zip
 ROLE_ARN=arn:aws:iam::000000000000:role/lambda-role
 AWS_REGION=eu-central-1
 
-.PHONY: all build-lambda zip-lambda create-queue create-lambda wait-for-queue map-sqs-to-lambda invoke-lambda start-api reset clean
+.PHONY: all build-lambda zip-lambda create-queue create-lambda wait-for-queue map-sqs-to-lambda invoke-lambda start-api reset clean status
 
 all: build-lambda zip-lambda create-queue create-lambda wait-for-lambda map-sqs-to-lambda invoke-lambda start-api reset clean
 	@echo "🎉 All done! Lambda and SQS are connected and ready."
